@@ -1,0 +1,9 @@
+{
+  "name": "gnoays-agent-tools",
+  "owner": { "name": "gnoays" },
+  "description": "Plugins for working across agent CLIs (Claude Code, Codex, cursor-agent, agy).",
+  "plugins": [
+    { "name": "bridge", "source": "./plugins/bridge", "description": "Delegate tasks to headless agent CLIs (cursor-agent, agy, claude, codex) and supervise them." },
+    { "name": "usage", "source": "./plugins/usage", "description": "Show remaining Claude Code, Codex, Cursor and Antigravity quota." }
+  ]
+}

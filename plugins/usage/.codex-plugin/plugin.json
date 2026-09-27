@@ -1,0 +1,13 @@
+{
+  "name": "usage",
+  "version": "0.1.0",
+  "description": "Show remaining Claude Code, Codex, Cursor and Antigravity quota.",
+  "author": { "name": "gnoays" },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Usage",
+    "shortDescription": "Remaining Claude Code / Codex / Cursor / Antigravity quota",
+    "category": "Productivity",
+    "capabilities": ["Read"]
+  }
+}

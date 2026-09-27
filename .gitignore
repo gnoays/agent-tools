@@ -1,0 +1,3 @@
+.claude/
+node_modules/
+plugins/usage/scripts/token.mjs

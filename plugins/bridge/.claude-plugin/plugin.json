@@ -1,0 +1,8 @@
+{
+  "name": "bridge",
+  "version": "0.1.0",
+  "description": "Delegate tasks from Claude Code (or any shell-capable host) to headless agent CLIs (cursor-agent, agy, claude, codex).",
+  "author": {
+    "name": "gnoays"
+  }
+}

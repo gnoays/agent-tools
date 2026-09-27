@@ -1,0 +1,13 @@
+{
+  "name": "bridge",
+  "version": "0.1.0",
+  "description": "Delegate tasks to headless agent CLIs (cursor-agent, agy, claude, codex) and supervise them.",
+  "author": { "name": "gnoays" },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Bridge",
+    "shortDescription": "Delegate to cursor-agent, agy, claude or codex",
+    "category": "Engineering",
+    "capabilities": ["Read", "Write"]
+  }
+}
