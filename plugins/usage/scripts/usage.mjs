@@ -267,6 +267,15 @@ export function jsonReport(names, results, now = new Date()) {
   };
 }
 
+// Markdown table with padded columns, so it reads aligned in a terminal too. used and remaining are right-aligned.
+export function table(rows) {
+  const right = [false, false, true, true, false];
+  const w = rows[0].map((_, c) => Math.max(3, ...rows.map((r) => r[c].length)));
+  const line = (r) => `| ${r.map((v, c) => (right[c] ? v.padStart(w[c]) : v.padEnd(w[c]))).join(" | ")} |`;
+  const sep = `|${w.map((n, c) => (right[c] ? `${"-".repeat(n + 1)}:` : "-".repeat(n + 2))).join("|")}|`;
+  return [line(rows[0]), sep, ...rows.slice(1).map(line)].join("\n");
+}
+
 async function main(names) {
   const json = names.includes("--json");
   names = names.filter((n) => n !== "--json");
@@ -279,18 +288,18 @@ async function main(names) {
     console.log(JSON.stringify(jsonReport(picked, results), null, 2));
     process.exit(results.some((r) => r.status === "rejected") ? 1 : 0);
   }
-  const lines = ["| service | window | used | remaining | resets |", "|---|---|---:|---:|---|"];
+  const rows = [["service", "window", "used", "remaining", "resets"]];
   let failed = false;
   results.forEach((r, i) => {
     const name = picked[i];
-    if (r.status === "rejected") { failed = true; lines.push(`| ${name} | error | | | ${r.reason.message.replace(/\|/g, "/")} |`); return; }
+    if (r.status === "rejected") { failed = true; rows.push([name, "error", "", "", r.reason.message.replace(/\|/g, "/")]); return; }
     for (const row of r.value) {
       const used = row.used == null ? "" : `${Math.round(row.used)}%`;
       const left = row.used == null ? (row.note ?? "") : `${Math.max(0, 100 - Math.round(row.used))}%`;
-      lines.push(`| ${name}${row.plan ? ` (${row.plan})` : ""} | ${row.window} | ${used} | ${left} | ${fmtReset(row.resetsAt)} |`);
+      rows.push([`${name}${row.plan ? ` (${row.plan})` : ""}`, row.window, used, left, fmtReset(row.resetsAt)]);
     }
   });
-  console.log(`${lines.join("\n")}\n\nchecked ${fmtReset(new Date()).split(" (")[0]}`);
+  console.log(`${table(rows)}\n\nchecked ${fmtReset(new Date()).split(" (")[0]}`);
   process.exit(failed ? 1 : 0);
 }
 

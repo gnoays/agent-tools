@@ -5,7 +5,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { agyRows, claudePlan, claudeRows, codexFromCli, codexRows, cursorRows, fmtReset, jsonReport } from "../usage.mjs";
+import { agyRows, claudePlan, claudeRows, codexFromCli, codexRows, cursorRows, fmtReset, jsonReport, table } from "../usage.mjs";
 
 // Claude: `limits` wins (carries per-model scopes); buckets are the fallback.
 const limits = claudeRows({ five_hour: { utilization: 1 }, limits: [
@@ -58,6 +58,9 @@ assert.deepEqual(js.services.agy, { error: "no login" });
 const now = new Date(2026, 0, 1, 10, 0);
 assert.match(fmtReset(new Date(2026, 0, 1, 12, 5), now), /1\/1 12:05 \(in 2h05m\)/);
 assert.match(fmtReset(new Date(2026, 0, 3, 13, 0), now), /in 2d3h/);
+
+assert.equal(table([["service", "window", "used", "remaining", "resets"], ["codex", "5h", "7%", "93%", "x"]]),
+  "| service | window | used | remaining | resets |\n|---------|--------|-----:|----------:|--------|\n| codex   | 5h     |   7% |       93% | x      |");
 
 // End to end through fake CLIs. Empty config dirs leave no login to read, so the CLIs answer even when a token.mjs
 // (see viaToken in usage.mjs) is present. The fakes log when they start and
