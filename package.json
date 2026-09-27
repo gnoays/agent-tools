@@ -1,0 +1,8 @@
+{
+  "name": "agent-tools",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "bin": { "agent-usage": "plugins/usage/scripts/usage.mjs" }
+}

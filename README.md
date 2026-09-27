@@ -45,6 +45,13 @@ node plugins/usage/scripts/usage.mjs            # all services
 node plugins/usage/scripts/usage.mjs agy --json
 ```
 
+To run usage as a command from anywhere, install the repo globally with npm; this adds `agent-usage`:
+
+```sh
+npm i -g github:gnoays/agent-tools
+agent-usage codex
+```
+
 Workers started by bridge run outside the host's permission system. With `--write` they edit files and run
 commands without asking, so pass it only when you want changes.
 
