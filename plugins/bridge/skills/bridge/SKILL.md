@@ -1,6 +1,6 @@
 ---
 name: bridge
-description: Delegate coding or research work to another headless agent CLI (cursor-agent, agy, claude, codex) and supervise it — run jobs in the background, wait, review the diff and tests, send follow-ups. Use when the user asks to hand a task to cursor / agy / claude / codex, or to split a large task across agents.
+description: Delegate coding or research work to another headless agent CLI (cursor-agent, agy, claude, codex) and supervise it — run jobs in the background, wait, review the diff and tests, send follow-ups. Use when the user asks to hand a task to cursor / agy / claude / codex, or to split a large task across agents, or asks which models / effort levels a CLI accepts.
 ---
 
 # bridge: delegate and supervise
