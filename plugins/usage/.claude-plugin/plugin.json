@@ -1,6 +1,6 @@
 {
   "name": "usage",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Show remaining Claude Code, Codex, Cursor and Antigravity quota.",
   "author": { "name": "gnoays" }
 }
